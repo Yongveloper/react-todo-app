@@ -5,15 +5,17 @@ import './TodoList.css';
 const TodoList = ({ todos, onCheckToggle, onInsertToggle, onChangeSelectedTodo }) => {
   return (
     <div className="TodoList">
-      {todos.map((todo) => (
-        <ToDoItem
-          key={todo.id}
-          todo={todo}
-          onCheckToggle={onCheckToggle}
-          onInsertToggle={onInsertToggle}
-          onChangeSelectedTodo={onChangeSelectedTodo}
-        />
-      ))}
+      <div className="todoList-wrap">
+        {todos.map((todo) => (
+          <ToDoItem
+            key={todo.id}
+            todo={todo}
+            onCheckToggle={onCheckToggle}
+            onInsertToggle={onInsertToggle}
+            onChangeSelectedTodo={onChangeSelectedTodo}
+          />
+        ))}
+      </div>
     </div>
   );
 };

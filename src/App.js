@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Template from './components/Template';
+import React, { useState, useEffect } from 'react';
+import TodoHeader from './components/TodoHeader';
 import TodoList from './components/TodoList';
 import TodoInsert from './components/TodoInsert';
-import { MdAddCircle, MdOpenInBrowser } from 'react-icons/md';
+import { MdAddCircle } from 'react-icons/md';
 import './App.css';
 
 let nextId = 4;
@@ -14,19 +14,11 @@ const App = () => {
     {
       id: 1,
       text: '할일 1',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: '할일 2',
       checked: false,
     },
-    {
-      id: 3,
-      text: '할일 3',
-      checked: true,
-    },
   ]);
+
+  const [selected, setSelected] = useState([]);
 
   const onInsertToggle = () => {
     if (selectedTodo) {
@@ -68,8 +60,13 @@ const App = () => {
     setTodos((todos) => todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
   };
 
+  useEffect(() => {
+    setSelected(todos.filter((todo) => todo.checked));
+  }, [todos]);
+
   return (
-    <Template todoLength={todos.length}>
+    <div className="Template">
+      <TodoHeader todoLength={todos.length} selectedLength={selected.length} />
       <TodoList
         todos={todos}
         onCheckToggle={onCheckToggle}
@@ -88,7 +85,7 @@ const App = () => {
           onUpdate={onUpdate}
         />
       )}
-    </Template>
+    </div>
   );
 };
 

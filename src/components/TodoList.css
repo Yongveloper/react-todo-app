@@ -1,6 +1,9 @@
 .TodoList {
   width: 90vw;
+  height: 55vh;
   margin: 0 auto;
-  padding-bottom: 20px;
   user-select: none;
+  overflow: auto;
+  padding: 0.3rem;
+  padding-bottom: 20px;
 }
