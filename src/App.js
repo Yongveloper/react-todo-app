@@ -5,7 +5,7 @@ import TodoInsert from './components/TodoInsert';
 import { MdAddCircle } from 'react-icons/md';
 import './App.css';
 
-let nextId = 4;
+let nextId = 2;
 
 const App = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
@@ -39,6 +39,7 @@ const App = () => {
     };
 
     setTodos((todos) => todos.concat(todo));
+
     nextId++;
   };
 
@@ -61,7 +62,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    setSelected(todos.filter((todo) => todo.checked));
+    if (todos) {
+      setSelected(todos.filter((todo) => todo.checked));
+    }
   }, [todos]);
 
   return (
